@@ -24,4 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('items_list', [ItemController::class, 'itemsList']);
 
     Route::get('menus_list', [MenuController::class, 'menusList']);
+
+    Route::post('logout_admin', [UserController::class, 'logoutAdmin']);
 });

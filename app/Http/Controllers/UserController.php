@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use \App\ReturnResult;
 use \App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\Sanctum;
 
 class UserController extends Controller
 {
@@ -39,5 +40,12 @@ class UserController extends Controller
             $result->setError403('Wrong Credentials');
             return response()->json($result, 403);
         }
+    }
+    public function logoutAdmin(Request $request)
+    {
+        $result = new ReturnResult();
+        auth()->user()->tokens()->delete();
+        $result->message="Admin logged out";
+        return response()->json($result);
     }
 }
